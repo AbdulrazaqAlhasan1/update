@@ -144,31 +144,21 @@ $(function() {
             console.log(object12);
             console.log(object12.updates[0].time);
             
+            for(var i = 0; i < object12.updates.length; i++){
 
+                var li = 
+                `<li>
+                    <h6 id="title1">${object12.updates[i].title}</h6>
+                    <p class="mt-2">${object12.updates[i].description}</p>
+                    <p class="text-muted mb-4">
+                        <i class="mdi mdi-clock-outline"></i>
+                        ${object12.updates[i].time}
+                    </p>
+                </li>`;
 
+                $("#update-list").append(li);
 
-        //     <li>
-        //     <h6 id="title1">User confirmation</h6>
-        //     <p class="mt-2" id="desc1">Tonight's the night. And it's going to happen again and again. It has to happen.
-        //       I'm thinking two circus clowns dancing. </p>
-        //     <p class="text-muted mb-4">
-        //       <i class="mdi mdi-clock-outline" id="time1"></i>
-        //       7 months ago.
-        //     </p>
-        //   </li>
-
-            
-
-            // Detta ska göras om till en loop istället for()
-            $("#time1").text(object12.updates[0].time);
-            $("#time2").text(object12.updates[1].time);
-            $("#time3").text(object12.updates[2].time);/*عم يطلع النص القديم مع المضاف*/
-            $("#title1").text(object12.updates[0].title);
-            $("#title2").text(object12.updates[1].title);
-            $("#title3").text(object12.updates[2].title);
-            $("#desc1").text(object12.updates[0].description);
-            $("#desc2").text(object12.updates[1].description);
-            $("#desc3").text(object12.updates[2].description);
+            }        
         }
     }
     update.open("GET" , "https://fe18.azurewebsites.net/api/updates" , true);
