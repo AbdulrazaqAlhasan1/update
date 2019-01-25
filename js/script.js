@@ -82,6 +82,30 @@ $(function() {
     download.open("GET" , "https://fe18.azurewebsites.net/api/downloads" , true);
     download.send();
 
+    //project//
+    if($("#projectsbox").length) {
+       let project = new XMLHttpRequest();
+       
+       project .onload = function () {
+           if(this.readyState == 4 && this.status == 200) {
+               var object22 = JSON.parse(this.response);     
+   
+              // console.log(object.users);
+   
+   
+               $("#pro-1").text(object22.procent);
+               $("#pro-2").text(object22.growth);
+               
+           }
+       }
+       project .open("GET", "https://fe18.azurewebsites.net/api/projectschart", true);
+       project .send();
+   }
+
+
+
+
+
     let totalsales1 = new XMLHttpRequest();
     totalsales1.onload =function(){
         if(this.readyState == 4 &&this.status == 200){
