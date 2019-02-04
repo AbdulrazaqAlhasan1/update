@@ -1,25 +1,27 @@
 $(function() {
-    $("#loginForm").submit(function(event){
-        event.preventDefault();
+    $("#registeration").on("click", function(event){
+         event.preventDefault();
 
-        let request = new XMLHttpRequest();
+         let request = new XMLHttpRequest();
         request.onload = function () {
-            if(this.readyState == 4 && this.status == 200) {
-                var object = JSON.parse(this.response);
+             if(this.readyState == 4 && this.status == 200) {
+                 var object = JSON.parse(this.response);
 
                 if($("#inputEmail").val() === object.email  && $("#inputPassword").val() === object.password){
-                    window.location.href = "index.html";
-                }
+                 window.location.href = "index.html";
+                 }
                 else {
-                    alert("felaktig epostadress eller lösenord!");
-                }
-            }
-        }
-        request.open("GET", "https://fe18.azurewebsites.net/api/user", true);
+                     alert("please check your email and password");
+                 }
+             }
+         }
+         request.open("GET", "https://fe18.azurewebsites.net/api/user", true);
         request.send();
-    });
+     });
 
-    $("#logout").on("click", function() {
+    
+
+    $("#signout").on("click", function() {
         window.location.href = "login.html";
     });
 
@@ -31,7 +33,7 @@ $(function() {
             // console.log(object);
             var $fullname =  object.firstname + " " + object.lastname
 
-            $("#welcomename").text($fullname);
+            $("#username").text($fullname);
         }
     }    
     request.open("GET", "https://fe18.azurewebsites.net/api/user", true);
@@ -41,13 +43,13 @@ $(function() {
     let totalsales = new XMLHttpRequest()
     totalsales.onload = function(){
         if(this.readyState == 4 && this.status == 200){
-            var object1 = JSON.parse(this.response);
+            var object = JSON.parse(this.response);
 
-           // console.log(object1);
-            $("#invoices1").text(object1.invoices);
-            $("#queries").text(object1.queries);
-            $("#returns").text(object1.returns);
-            $("#revenue").text(object1.revenue);
+           // console.log(object);
+            $("#invo").text(object.invoices);
+            $("#que").text(object.queries);
+            $("#ret").text(object.returns);
+            $("#rev").text(object.revenue);
 
         }
     }
@@ -60,8 +62,8 @@ $(function() {
         if(this.readyState == 4 && this.status == 200){
             var object2 = JSON.parse(this.response);
       
-            $("#user").text(object2.users);
-            $("#gro").text(object2.growth);
+            $("#user-one").text(object2.users);
+            $("#user-tow").text(object2.growth);
         }
     }
     usercharts.open("GET" , "https://fe18.azurewebsites.net/api/userschart ", true);
@@ -74,8 +76,8 @@ $(function() {
             var object4 = JSON.parse(this.response);
         
             //console.log(object4);
-            $("#online").text(object4.online);
-            $("#offline").text(object4.offline);
+            $("#on").text(object4.online);
+            $("#off").text(object4.offline);
         }
     }
 
@@ -83,7 +85,7 @@ $(function() {
     download.send();
 
     //project//
-    if($("#projectsbox").length) {
+    if($("#the-project").length) {
        let project = new XMLHttpRequest();
        
        project .onload = function () {
@@ -127,8 +129,8 @@ $(function() {
             console.log(object9);
             var  $number1 =  object9.amount  + "" +  object9.currency
         
-        $("#nummer2").text($number1);
-        $("#month1").text(object9.period);
+        $("#numTow").text($number1);
+        $("#monOne").text(object9.period);
         }
     }
     totalpurchases.open("GET" , "https://fe18.azurewebsites.net/api/totalpurchases" , true);
@@ -138,11 +140,11 @@ $(function() {
     let totalorder = new XMLHttpRequest();
     totalorder.onload = function(){
         if(this.readyState == 4 &&this.status == 200){
-            var object10 = JSON.parse(this.response);  
-            var  $number3 =  object10.amount  + "" +  object10.currency
+            var object = JSON.parse(this.response);  
+            var  $number3 =  object.amount  + "" +  object.currency
         
-        $("#nummer3").text($number3);
-        $("#month2").text(object10.period);
+        $("#nomthree").text($number3);
+        $("#montow").text(object.period);
         }
     }
     totalorder.open("GET" , "https://fe18.azurewebsites.net/api/totalorders" , true);
@@ -151,11 +153,11 @@ $(function() {
     let totalgro = new XMLHttpRequest();
     totalgro.onload = function(){
         if(this.readyState == 4 &&this.status == 200){
-            var object11 = JSON.parse(this.response);
-            var  $number4 =  object11.amount  + "" +  object11.currency
+            var object = JSON.parse(this.response);
+            var  $number4 =  object.amount  + "" +  object.currency
         
-            $("#nummer4").text($number4);
-            $("#month3").text(object11.period);
+            $("#nomfour").text($number4);
+            $("#monthree").text(object.period);
         }
     }
     totalgro.open("GET" , "https://fe18.azurewebsites.net/api/totalgrowth" , true);
@@ -164,19 +166,19 @@ $(function() {
     let update= new XMLHttpRequest();
     update.onload = function(){
         if(this.readyState == 4 && this.status == 200){
-            var object12 = JSON.parse(this.response);
-            console.log(object12);
-            console.log(object12.updates[0].time);
+            var object = JSON.parse(this.response);
+            console.log(object);
+            console.log(object.updates[0].time);
             
-            for(var i = 0; i < object12.updates.length; i++){
+            for(var i = 0; i < object.updates.length; i++){
 
                 var li = 
                 `<li>
-                    <h6 id="title1">${object12.updates[i].title}</h6>
-                    <p class="mt-2">${object12.updates[i].description}</p>
+                    <h6 id="title1">${object.updates[i].title}</h6>
+                    <p class="mt-2">${object.updates[i].description}</p>
                     <p class="text-muted mb-4">
                         <i class="mdi mdi-clock-outline"></i>
-                        ${object12.updates[i].time}
+                        ${object.updates[i].time}
                     </p>
                 </li>`;
 
@@ -191,19 +193,19 @@ $(function() {
     let invoice= new XMLHttpRequest();
     invoice.onload = function(){
         if(this.readyState == 4 && this.status == 200){
-            var object13 = JSON.parse(this.response);
+            var object = JSON.parse(this.response);
 
-            for(var i = 0; i < object13.invoices.length; i++){
+            for(var i = 0; i < object.invoices.length; i++){
         
                 var badgestatusclass;
                 
-                if(object13.invoices[i].status == "Pågående") {
+                if(object.invoices[i].status == "Pågående") {
                     badgestatusclass = "badge-success";
                 } 
-                else if(object13.invoices[i].status == "Öppen") {
+                else if(object.invoices[i].status == "Öppen") {
                     badgestatusclass = "badge-warning";
                 }
-                else if(object13.invoices[i].status == "Tillfälligt stoppad") {
+                else if(object.invoices[i].status == "Tillfälligt stoppad") {
                     badgestatusclass = "badge-danger";
                 }
                 else {
@@ -212,13 +214,13 @@ $(function() {
 
                 var trInfo = 
                     `<tr>
-                        <td>${object13.invoices[i].invoicenumber}</td>
-                        <td>${object13.invoices[i].customer}</td>
-                        <td>${object13.invoices[i].shipping}</td>
-                        <td class="font-weight-bold">${object13.invoices[i].totalprice}</td>
-                        <td>${object13.invoices[i].customerprice}</td>
+                        <td>${object.invoices[i].invoicenumber}</td>
+                        <td>${object.invoices[i].customer}</td>
+                        <td>${object.invoices[i].shipping}</td>
+                        <td class="font-weight-bold">${object.invoices[i].totalprice}</td>
+                        <td>${object.invoices[i].customerprice}</td>
                         <td>
-                            <div class="badge ${badgestatusclass} badge-fw">${object13.invoices[i].status}</div>
+                            <div class="badge ${badgestatusclass} badge-fw">${object.invoices[i].status}</div>
                         </td>
                     </tr>`;
 
@@ -234,16 +236,16 @@ $(function() {
        if(this.readyState == 4 && this.status == 200){
             $('.yearsDrobDown').html('');
 
-            var object16 = JSON.parse(this.response);
-            console.log(object16.years)
-            for(var i = 0 ; i < object16.years.length ; i++){
-                console.log(object16.years[i]);
-                $('.yearsDrobDown').append('<a class="dropdown-item" href="#">'+object16.years[i]+'</a>');
+            var object = JSON.parse(this.response);
+            console.log(object.years)
+            for(var i = 0 ; i < object.years.length ; i++){
+                console.log(object.years[i]);
+                $('.yearsDrobDown').append('<a class="dropdown-item" href="#">'+object.years[i]+'</a>');
             }
       
-            for( var i=0; i < object16.tickets.length;i++) {
+            for( var i=0; i < object.tickets.length;i++) {
              
-                let names = object16.tickets[i].fullname.split(" ");
+                let names = object.tickets[i].fullname.split(" ");
                 let initials = names[0].charAt(0) + names[1].charAt(0);
             
                 var test = 
@@ -254,16 +256,16 @@ $(function() {
                     </div>
                     </td>
                     <td>
-                    <p class="mb-0">${object16.tickets[i].fullname}</p>
-                    <p class="text-muted mb-0">${object16.tickets[i].city}</p>
+                    <p class="mb-0">${object.tickets[i].fullname}</p>
+                    <p class="text-muted mb-0">${object.tickets[i].city}</p>
                     </td>
                     <td>
-                    <p class="mb-0">${object16.tickets[i].date}</p>
-                    <p class="text-muted mb-0">${object16.tickets[i].time}</p>
+                    <p class="mb-0">${object.tickets[i].date}</p>
+                    <p class="text-muted mb-0">${object.tickets[i].time}</p>
                     </td>
                     <td>
-                    <p class="mb-0">${object16.tickets[i].project}</p>
-                    <p class="text-muted mb-0">${object16.tickets[i].status}</p>
+                    <p class="mb-0">${object.tickets[i].project}</p>
+                    <p class="text-muted mb-0">${object.tickets[i].status}</p>
                     </td>
                     <td class="pr-0">
                     <i class="mdi mdi-dots-horizontal icon-sm cursor-pointer"></i>

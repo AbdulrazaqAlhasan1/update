@@ -24,8 +24,8 @@
             <div class="col-md-12 grid-margin">
               <div class="card bg-white">
                 <div class="card-body d-flex align-items-center justify-content-between">
-                  <h4 id="welcomename" class="mt-1 mb-1"></h4>
-                  <button type="click" id="logout" class="btn btn-info d-none d-md-block">Logout</button>
+                  <h4 id="username" class="mt-1 mb-1"></h4>
+                  <button type="click" id="signout" class="btn btn-info d-none d-md-block">Logout</button>
                 </div>
               </div>
             </div>
@@ -65,8 +65,8 @@
                     <div class="text-white">
                       <p class="font-weight-medium mt-md-2 mt-xl-0 text-md-center text-xl-left">Total Purchases</p>
                       <div class="d-flex flex-md-column flex-xl-row flex-wrap align-items-baseline align-items-md-center align-items-xl-baseline">
-                        <h3 class="mb-0 mb-md-1 mb-lg-0 mr-1" id="nummer2">0</h3>
-                        <small class="mb-0" id="month1">This month</small>
+                        <h3 class="mb-0 mb-md-1 mb-lg-0 mr-1" id="numTow">0</h3>
+                        <small class="mb-0" id="monOne">This month</small>
                       </div>
                     </div>
                   </div>
@@ -85,8 +85,8 @@
                     <div class="text-white">
                       <p class="font-weight-medium mt-md-2 mt-xl-0 text-md-center text-xl-left">Total Orders</p>
                       <div class="d-flex flex-md-column flex-xl-row flex-wrap align-items-baseline align-items-md-center align-items-xl-baseline">
-                        <h3 class="mb-0 mb-md-1 mb-lg-0 mr-1" id="nummer3">0</h3>
-                        <small class="mb-0" id="month2">This month</small>
+                        <h3 class="mb-0 mb-md-1 mb-lg-0 mr-1" id="nomthree">0</h3>
+                        <small class="mb-0" id="montow">This month</small>
                       </div>
                     </div>
                   </div>
@@ -105,8 +105,8 @@
                     <div class="text-white">
                       <p class="font-weight-medium mt-md-2 mt-xl-0 text-md-center text-xl-left">Total Growth</p>
                       <div class="d-flex flex-md-column flex-xl-row flex-wrap align-items-baseline align-items-md-center align-items-xl-baseline">
-                        <h3 class="mb-0 mb-md-1 mb-lg-0 mr-1" id="nummer4">0</h3>
-                        <small class="mb-0"id="month3">This month</small>
+                        <h3 class="mb-0 mb-md-1 mb-lg-0 mr-1" id="nomfour">0</h3>
+                        <small class="mb-0"id="monthree">This month</small>
                       </div>
                     </div>
                   </div>
@@ -141,7 +141,7 @@
                       <p class="card-title">Sale report</p>
                       <p class="text-muted mb-4">Lorem ipsum dolor sit amet consectetur adipisicing elit. Quia id
                         beatae sint dolorum quod ducimus quisquam ut minima atque quaerat.</p>
-                      <canvas id="sale-report-chart"></canvas>
+                      <canvas id="reportChart"></canvas>
                     </div>
                   </div>
                   <div class="col-md-5 col-lg-6 col-xl-5">
@@ -192,22 +192,22 @@
                   <div class="d-flex flex-wrap mb-4 mt-4 pb-4">
                     <div class="mr-4 mr-md-5">
                       <p class="mb-0">Revenue</p>
-                      <h4 id="revenue">13,956</h4>
+                      <h4 id="rev">13,956</h4>
                     </div>
                     <div class="mr-4 mr-md-5">
                       <p class="mb-0">Returns</p>
-                      <h4 id="returns">0</h4>
+                      <h4 id="ret">0</h4>
                     </div>
                     <div class="mr-4 mr-md-5">
                       <p class="mb-0">Queries</p>
-                      <h4 id="queries">0</h4>
+                      <h4 id="que">0</h4>
                     </div>
                     <div class="mr-4 mr-md-5">
                       <p class="mb-0">Invoices</p>
-                      <h4 id="invoices1">0</h4>
+                      <h4 id="invo">0</h4>
                     </div>
                   </div>
-                  <canvas id="total-sales-chart"></canvas>
+                  <canvas id="all-sales"></canvas>
                 </div>
               </div>
             </div>
@@ -222,19 +222,19 @@
                     <div class="card-body">
                       <p class="card-title">Users</p>
                       <div class="d-flex flex-wrap align-items-baseline">
-                        <h2 class="mr-3" id="user" >0</h2>
+                        <h2 class="mr-3" id="user-one" >0</h2>
                         <i class="mdi mdi-arrow-up mr-1 text-danger"></i><span>
-                          <p class="mb-0 text-danger font-weight-medium" id="gro" >0</p>
+                          <p class="mb-0 text-danger font-weight-medium" id="user-tow" >0</p>
                         </span>
                       </div>
                       <p class="mb-0 text-muted">Total users world wide</p>
                     </div>
-                    <canvas id="users-chart"></canvas>
+                    <canvas id="my-user"></canvas>
                   </div>
                 </div>
 
                 <!-- projects box -->
-                <div id="projectsbox" class="col-md-6 grid-margin stretch-card">
+                <div id="the-project" class="col-md-6 grid-margin stretch-card">
                   <div class="card">
                     <div class="card-body">
                       <p class="card-title">Projects</p>
@@ -246,7 +246,7 @@
                       </div>
                       <p class="mb-0 text-muted">Total users world wide</p>
                     </div>
-                    <canvas id="projects-chart"></canvas>
+                    <canvas id="my-project"></canvas>
                   </div>
                 </div>
               </div>
@@ -266,7 +266,7 @@
                             </div>
                             <div class="col-6 pl-0">
                               <p class="mb-0">Offline</p>
-                              <h2 id="offline">0</h2>
+                              <h2 id="off">0</h2>
                             </div>
                           </div>
                         </div>
@@ -277,7 +277,7 @@
                             </div>
                             <div class="col-6 pl-0">
                               <p class="mb-0">Online</p>
-                              <h2 id="online">0</h2>
+                              <h2 id="on">0</h2>
                             </div>
                           </div>
                         </div>

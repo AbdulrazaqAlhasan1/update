@@ -2,23 +2,22 @@
   'use strict';
   $(function() {
 
-    if ($("#total-sales-chart").length) {
+    if ($("#all-sales").length) {
 
         /*total sales charts*/
         let totalsales = new XMLHttpRequest()
         totalsales.onload = function(){
             if(this.readyState == 4 && this.status == 200){
-                var object1 = JSON.parse(this.response);
-     // console.log( object1.datasets[0].data);
-      //console.log( object1.datasets[1].label);
+                var objectsales = JSON.parse(this.response);
+
     
   
 
       var areaData = {
-        labels: object1.labels,
+        labels: objectsales.labels,
         datasets: [
           {
-           data: object1.datasets[0].data,
+           data: objectsales.datasets[0].data,
             backgroundColor: [
               'rgba(61, 165, 244, .0)'
             ],
@@ -27,11 +26,11 @@
             ],
             borderWidth: 2,
             fill: 'origin',
-            label: object1.datasets[0].label,
+            label: objectsales.datasets[0].label,
           },
           {
            
-            data: object1.datasets[1].data,
+            data: objectsales.datasets[1].data,
             backgroundColor: [
               'rgba(241, 83, 110, .0)'
             ],
@@ -40,7 +39,7 @@
             ],
             borderWidth: 2,
             fill: 'origin',
-            label: object1.datasets[1].label,
+            label: objectsales.datasets[1].label,
           }
         ]
       };
@@ -115,7 +114,7 @@
           }
         }
       }
-      var revenueChartCanvas = $("#total-sales-chart").get(0).getContext("2d");
+      var revenueChartCanvas = $("#all-sales").get(0).getContext("2d");
       var revenueChart = new Chart(revenueChartCanvas, {
         type: 'line',
         data: areaData,
@@ -128,25 +127,24 @@
   }
  
 
-    if ($("#users-chart").length) {
+    if ($("#my-user").length) {
       let usercharts = new XMLHttpRequest()
     usercharts.onload = function(){
     if(this.readyState == 4 && this.status == 200){
-        var object2 = JSON.parse(this.response);
-       // console.log(object2);
-       // console.log(object2.datasets[0].data);
+        var objectMyUser = JSON.parse(this.response);
+
         var areaData = {
         labels: ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug"],
         datasets: [{
          
-            data: object2.datasets[0].data,
+            data: objectMyUser.datasets[0].data,
             backgroundColor: [
               '#e0fff4'
             ],
             borderWidth: 2,
             borderColor: "#00c689",
             fill: 'origin',
-            label: object2.datasets[0].label,
+            label: objectMyUser.datasets[0].label,
           }
         ]
       };
@@ -201,7 +199,7 @@
           }
         }
       }
-      var salesChartCanvas = $("#users-chart").get(0).getContext("2d");
+      var salesChartCanvas = $("#my-user").get(0).getContext("2d");
       var salesChart = new Chart(salesChartCanvas, {
         type: 'line',
         data: areaData,
@@ -213,23 +211,23 @@
   usercharts.send();
     }
 
-    if ($("#projects-chart").length) {
+    if ($("#my-project").length) {
       let projectscharts = new XMLHttpRequest()
       projectscharts.onload = function(){
       if(this.readyState == 4 && this.status == 200){
-          var object3 = JSON.parse(this.response);
-         // console.log(object3);
+          var objectMyProject = JSON.parse(this.response);
+         // console.log(objectMyProject);
       var areaData = {
-        labels: object3.labels,
+        labels: objectMyProject.labels,
         datasets: [{
-            data: object3.datasets[0].data,
+            data: objectMyProject.datasets[0].data,
             backgroundColor: [
               '#e5f2ff'
             ],
             borderWidth: 2,
             borderColor: "#3da5f4",
             fill: 'origin',
-            label: object3.datasets[0].label,
+            label: objectMyProject.datasets[0].label,
           }
         ]
       };
@@ -284,7 +282,7 @@
           }
         }
       }
-      var salesChartCanvas = $("#projects-chart").get(0).getContext("2d");
+      var salesChartCanvas = $("#my-project").get(0).getContext("2d");
       var salesChart = new Chart(salesChartCanvas, {
         type: 'line',
         data: areaData,
@@ -396,21 +394,21 @@
       let revenuchart = new XMLHttpRequest()
       revenuchart .onload = function(){
      if(this.readyState == 4 && this.status == 200){
-        var object5 = JSON.parse(this.response);
-       // console.log(object5);
+        var objectRevenue = JSON.parse(this.response);
+       // console.log(objectRevenue);
        var CurrentChartCanvas = $("#revenue-chart").get(0).getContext("2d");
        var CurrentChart = new Chart(CurrentChartCanvas, {
         type: 'bar',
         data: {
-          labels: object5.labels,
+          labels: objectRevenue.labels,
           datasets: [{
-              label: object5.datasets[0].label,
-              data: object5.datasets[0].data,
+              label: objectRevenue.datasets[0].label,
+              data: objectRevenue.datasets[0].data,
               backgroundColor: '#405189'
             },
             {
-              label: object5.datasets[1].label,
-              data: object5.datasets[1].data,
+              label: objectRevenue.datasets[1].label,
+              data: objectRevenue.datasets[1].data,
               backgroundColor: '#3da5f4'
             }
           ]
@@ -493,12 +491,12 @@
       let distribution = new XMLHttpRequest()
       distribution .onload = function(){
      if(this.readyState == 4 && this.status == 200){
-        var object6 = JSON.parse(this.response);
-       console.log(object6.datasets[0].city[0]);
+        var object = JSON.parse(this.response);
+       console.log(object.datasets[0].city[0]);
       var areaData = {
-        labels: object6.labels,
+        labels: object.labels,
         datasets: [{
-            data: object6.datasets[0].data,
+            data: object.datasets[0].data,
             backgroundColor: [
               "#3da5f4", "#f1536e", "#fda006"
             ],
@@ -523,17 +521,17 @@
           enabled: true
         },
         legendCallback: function(chart) { 
-          console.log(object6.datasets[0].city[0]);
+          console.log(object.datasets[0].city[0]);
           var text = [];
           text.push('<div class="distribution-chart">');
             text.push('<div class="item"><div class="legend-label" style="border: 3px solid ' + chart.data.datasets[0].backgroundColor[0] + '"></div>');
-            text.push('<p >' +object6.datasets[0].city[0]+ '</p>');
+            text.push('<p >' +object.datasets[0].city[0]+ '</p>');
             text.push('</div>');
             text.push('<div class="item"><div class="legend-label" style="border: 3px solid ' + chart.data.datasets[0].backgroundColor[1] + '"></div>');
-            text.push('<p >' +object6.datasets[0].city[1]+ '</p>');
+            text.push('<p >' +object.datasets[0].city[1]+ '</p>');
             text.push('</div>');
             text.push('<div class="item"><div class="legend-label" style="border: 3px solid ' + chart.data.datasets[0].backgroundColor[2] + '"></div>');
-            text.push('<p> ' +object6.datasets[0].city[2]+ '</p>');
+            text.push('<p> ' +object.datasets[0].city[2]+ '</p>');
           
             text.push('</div>');
           text.push('</div>');
@@ -577,7 +575,7 @@
    
     }
 
-    if ($("#sale-report-chart").length) {
+    if ($("#reportChart").length) {
       let salereport = new XMLHttpRequest();
 
       salereport.onload = function () {
@@ -585,7 +583,7 @@
                 
                  var object7 = JSON.parse(this.response);
                  console.log(object7);
-               var CurrentChartCanvas = $("#sale-report-chart").get(0).getContext("2d");
+               var CurrentChartCanvas = $("#reportChart").get(0).getContext("2d");
       
                     var CurrentChart = new Chart(CurrentChartCanvas, {
               type: 'bar',
